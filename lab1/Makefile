@@ -1,7 +1,8 @@
 src_dir = src
 debug_dir = debug
 release_dir = release
-build_dir = $(release_dir)/build
+lib_dir = $(release_dir)
+build_dir = $(lib_dir)/build
 group = I993
 name = Sushkina Mariya
 
@@ -23,7 +24,8 @@ SOURCES = \
 
 ifeq ($(MAKECMDGOALS), debug)
 	CFLAGS += -g
-	build_dir = $(debug_dir)/build
+	lib_dir = $(debug_dir)
+	build_dir = $(lib_dir)/build
 endif
 
 OBJECTS = $(patsubst %.o, $(build_dir)/%.o, $(SOURCES:.c=.o))
@@ -33,7 +35,7 @@ all: libauthor
 debug: libauthor
 
 libauthor: $(OBJECTS)
-	$(CC) $(CFLAGS) $(CFLAGS_LIB) $(OBJECTS) -o $(release_dir)/$@.so
+	$(CC) $(CFLAGS) $(CFLAGS_LIB) $(OBJECTS) -o $(lib_dir)/$@.so
 
 $(build_dir)/%.o: $(src_dir)/%.c
 	$(build_dir_guard)
