@@ -27,13 +27,14 @@ void server(void)
     while(1) {
         rcvid = MsgReceive(chid, msg, sizeof(msg), NULL);
         printf("Msg received from client, rcvid %X\n", rcvid);
-        if (!validate_msg(msg, expected_msg)) {
+        if (validate_msg(msg, expected_msg)) {
             printf("Message is not valid\n");
             break;
         }
 
         //Response
-        strcpy(response, " I993");
+        strcpy(response, msg);
+	strcat(response, " I993");
         MsgReply(rcvid, EOK, response, sizeof(response));
         printf("\"%s\". \n", response);
     }
