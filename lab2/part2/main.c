@@ -34,13 +34,13 @@ int main(int argc, char const *argv[])
     printf("Prog threads PID %d\n", getpid());
 
     ret = pthread_setschedparam(thread_id1, SCHED_RR, &param1);
-    if (!ret) {
-        printf("setschedprio thread 1 error: %d\n", ret);
+    if (ret) {
+        printf("setschedparam thread 1 error: %d\n", ret);
         return -1;
     }
     ret = pthread_setschedparam(thread_id2, SCHED_FIFO, &param2);
-    if (!ret) {
-        printf("setschedprio thread 2 error: %d\n", ret);
+    if (ret) {
+        printf("setschedparam thread 2 error: %d\n", ret);
         return -1;
     }
 
