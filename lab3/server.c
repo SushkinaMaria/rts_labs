@@ -17,7 +17,7 @@ void server(void)
     int chid;
     char msg[30];
     char expected_msg[] = "Sushkina Maria Mikhailovna";
-    char response[36]
+    char response[36];
 
     printf("Server start working\n");
     chid = ChannelCreate(0);
